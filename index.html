@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gracias a la Vida · Homenaje a Mercedes Sosa · Mario Gonzavarg</title>
+<meta name="description" content="Homenaje musical a Mercedes Sosa con banda completa, interpretado por el artista chileno Mario Gonzavarg. Disponible para teatros, festivales y eventos municipales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!--
+  PARA COMPLETAR: buscá la palabra CAMBIAR en este archivo y reemplazala:
+  - CAMBIAR-NUMERO: tu WhatsApp con código de país, sin + ni espacios (ej: 5493400123456). Aparece 3 veces.
+  - CAMBIAR-MAIL: mail de contratación
+  - CAMBIAR-INSTAGRAM, CAMBIAR-YOUTUBE: links a las cuentas
+  - CAMBIAR-IDVIDEO4, 5 y 6: códigos de YouTube (lo que va después de v= o de /shorts/). Los que dejes sin cambiar no se muestran.
+  Imágenes (carpeta "fotos", nombres exactos):
+  - Banner fijo de arriba: foto horizontal de fondo en fotos/banner.jpg (~2000x900). El logo va a la izquierda y es logo.png (PNG con fondo transparente, claro/blanco para que se lea sobre la foto)
+  - Fotos verticales: fotos/foto1.jpg ... foto6.jpg
+  - Videos verticales: de archivo en videos/video1.mp4 ... video3.mp4, o de YouTube (Shorts) con CAMBIAR-IDVIDEO4 a 6
+  - Dossier: PDF llamado dossier.pdf al lado de este archivo
+  Tipografía: --f-titulo (CSS) y link de Google Fonts. Colores: bloque :root.
+-->
+<style>
+:root{
+  --f-titulo:"Fraunces",Georgia,serif;
+  --beige:#d8cbb0; --beige-oscuro:#c6b693; --blanco:#fbf9f4; --negro:#161412;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--beige);color:var(--negro);font-family:"Work Sans",system-ui,sans-serif;font-size:17px;line-height:1.65}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--negro);outline-offset:3px}
+.oscura :focus-visible,.menu :focus-visible{outline-color:var(--blanco)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--f-titulo);line-height:1.05}
+h2{font-size:clamp(2rem,6vw,3rem);font-weight:900;letter-spacing:-.02em;margin-bottom:22px}
+p{max-width:62ch;margin-bottom:14px}
+.btn{display:inline-block;background:var(--negro);color:var(--blanco);font-weight:600;text-decoration:none;padding:13px 26px;border-radius:999px;margin:8px 10px 0 0}
+.btn.borde{background:transparent;color:var(--negro);border:1.5px solid var(--negro)}
+.btn.blanco{background:var(--blanco);color:var(--negro)}
+.btn:hover{filter:brightness(1.15)}
+
+/* banner fijo: foto de fondo y logo a la izquierda */
+.banner{position:relative;background:var(--negro);color:var(--blanco);height:clamp(225px,42vw,570px);overflow:hidden}
+.banner .fondo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.62),rgba(0,0,0,0) 62%)}
+.logo-banner{position:absolute;z-index:2;top:50%;transform:translateY(-50%);left:max(24px,calc((100vw - 1000px)/2 + 24px));font-family:var(--f-titulo);font-weight:900;line-height:1;font-size:clamp(2.2rem,7vw,4.6rem);max-width:55%}
+.logo-banner img{display:block;width:clamp(150px,30vw,380px);height:auto}
+
+/* menú */
+.menu{position:sticky;top:0;z-index:5;background:var(--negro);color:var(--blanco)}
+.menu .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:56px}
+.menu a{text-decoration:none;font-size:.95rem}
+.menu .links{display:none;gap:24px}
+@media(min-width:700px){.menu .links{display:flex}}
+.menu .btn{margin:0;padding:9px 18px;font-size:.92rem}
+
+/* secciones */
+section{padding:68px 0}
+.intro{padding:56px 0 64px}
+.intro h1{font-size:clamp(2.2rem,7vw,4rem);font-weight:900;letter-spacing:-.02em;margin-bottom:18px;max-width:16ch}
+.intro .lead{font-size:1.15rem}
+.blanca{background:var(--blanco)}
+.tostada{background:var(--beige-oscuro)}
+.oscura{background:var(--negro);color:var(--blanco)}
+.hechos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:26px;border-top:2px solid var(--negro)}
+.hechos div{padding:22px 22px 8px 0}
+.hechos h3{font-size:1.8rem;font-weight:900;margin-bottom:6px}
+.hechos p{font-size:.98rem;margin:0}
+
+/* videos y fotos: se desplazan en vertical, de a uno */
+.carrusel{position:relative;width:min(100%,380px);margin:24px auto}
+.pista{height:min(80vh,680px);overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;scrollbar-width:none;overscroll-behavior:auto}
+.pista::-webkit-scrollbar{display:none}
+.pista>*{display:block;width:100%;height:100%;scroll-snap-align:start;scroll-snap-stop:always;border:0;background:#241f1c}
+.pista video{object-fit:contain;background:#000}
+.pista img{object-fit:cover}
+.flecha{position:absolute;right:10px;z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:rgba(251,249,244,.92);color:var(--negro);font-size:1.3rem;cursor:pointer}
+.flecha.ant{top:calc(50% - 50px)}
+.flecha.sig{top:calc(50% + 6px)}
+footer{background:var(--negro);color:var(--blanco);padding:28px 0;font-size:.92rem}
+</style>
+</head>
+<body>
+<div class="banner" id="inicio">
+  <img class="fondo" src="fotos/banner.jpg" alt="Mario Gonzavarg, homenaje musical a Mercedes Sosa" onerror="this.remove()">
+  <div class="logo-banner"><img src="logo.png" alt="Gracias a la vida" onerror="this.replaceWith(document.createTextNode('Gracias a la vida'))"></div>
+</div>
+
+<div class="menu">
+  <div class="wrap">
+    <div class="links"><a href="#show">El show</a><a href="#trayectoria">Trayectoria</a><a href="#videos">Videos</a><a href="#fotos">Fotos</a></div>
+    <a class="btn blanco" href="#contacto">Contratar</a>
+  </div>
+</div>
+
+<main>
+<div class="intro">
+  <div class="wrap">
+    <h1>Homenaje musical a Mercedes Sosa</h1>
+    <p class="lead">Con 20 años de trayectoria y giras por distintos países, el artista chileno Mario Gonzavarg llega a Argentina con su tributo a La Negra.</p>
+    <p>Ideal para teatros, festivales, aniversarios y eventos municipales.</p>
+  </div>
+</div>
+
+<section class="blanca" id="show">
+  <div class="wrap">
+    <h2>El espectáculo</h2>
+    <p>Un homenaje realizado desde el amor y el respeto por la obra de Mercedes Sosa, pensado para emocionar a todas las generaciones y acercar su legado a los más jóvenes.</p>
+    <p>Mario Gonzavarg interpreta a La Negra con una voz y una presencia que ya conoció el público de Chile, de otros países y de la televisión.</p>
+    <p>El show se presenta con banda completa: voz, guitarra, teclado y batería en vivo. La duración y la ficha técnica se coordinan según el espacio, y se envían por WhatsApp o mail.</p>
+  </div>
+</section>
+
+<section id="trayectoria">
+  <div class="wrap">
+    <h2>Trayectoria</h2>
+    <div class="hechos">
+      <div><h3>20 años</h3><p>Interpretando el homenaje a Mercedes Sosa.</p></div>
+      <div><h3>Yo Soy</h3><p>Varias ediciones del reality de Chilevisión, en Chile.</p></div>
+      <div><h3>Chile y Australia</h3><p>Giras en escenarios internacionales, nuevo para el público argentino.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="oscura" id="videos">
+  <div class="wrap">
+    <h2>Videos</h2>
+    <p>Deslizá hacia arriba o hacia abajo para ver más.</p>
+    <div class="carrusel">
+      <div class="pista">
+        <video src="videos/video1.mp4" controls playsinline preload="metadata" onerror="this.remove()"></video>
+        <video src="videos/video2.mp4" controls playsinline preload="metadata" onerror="this.remove()"></video>
+        <video src="videos/video3.mp4" controls playsinline preload="metadata" onerror="this.remove()"></video>
+        <iframe src="https://www.youtube.com/embed/CAMBIAR-IDVIDEO4" title="Video 4 del show Gracias a la Vida" loading="lazy" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/CAMBIAR-IDVIDEO5" title="Video 5 del show Gracias a la Vida" loading="lazy" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/CAMBIAR-IDVIDEO6" title="Video 6 del show Gracias a la Vida" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <button class="flecha ant" data-d="-1" aria-label="Video anterior">▲</button>
+      <button class="flecha sig" data-d="1" aria-label="Video siguiente">▼</button>
+    </div>
+  </div>
+</section>
+
+<section class="blanca" id="fotos">
+  <div class="wrap">
+    <h2>Fotos</h2>
+    <div class="carrusel fotos">
+      <div class="pista">
+        <img src="fotos/foto1.jpg" alt="Mario Gonzavarg en el show" loading="lazy" onerror="this.remove()">
+        <img src="fotos/foto2.jpg" alt="Banda en escenario" loading="lazy" onerror="this.remove()">
+        <img src="fotos/foto3.jpg" alt="Gracias a la Vida en vivo" loading="lazy" onerror="this.remove()">
+        <img src="fotos/foto4.jpg" alt="Homenaje a Mercedes Sosa" loading="lazy" onerror="this.remove()">
+        <img src="fotos/foto5.jpg" alt="Mario Gonzavarg en escenario" loading="lazy" onerror="this.remove()">
+        <img src="fotos/foto6.jpg" alt="Gracias a la Vida, show con banda completa" loading="lazy" onerror="this.remove()">
+      </div>
+      <button class="flecha ant" data-d="-1" aria-label="Foto anterior">▲</button>
+      <button class="flecha sig" data-d="1" aria-label="Foto siguiente">▼</button>
+    </div>
+  </div>
+</section>
+
+<section class="tostada" id="contacto">
+  <div class="wrap">
+    <h2>Contratación</h2>
+    <p>Consultá fechas y disponibilidad para su gira en Argentina.</p>
+    <a class="btn" href="https://wa.me/CAMBIAR-NUMERO?text=Hola%2C%20quiero%20consultar%20por%20el%20show%20Gracias%20a%20la%20Vida">WhatsApp</a>
+    <a class="btn borde" href="mailto:CAMBIAR-MAIL">Escribir por mail</a>
+    <a class="btn borde" href="dossier.pdf" download>Descargar dossier</a>
+    <p style="margin-top:24px"><a href="CAMBIAR-INSTAGRAM">Instagram</a> &nbsp;&nbsp; <a href="CAMBIAR-YOUTUBE">YouTube</a></p>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">Gracias a la vida · Homenaje musical a Mercedes Sosa · Mario Gonzavarg</div>
+</footer>
+<script>
+document.querySelectorAll('iframe[src*="CAMBIAR"]').forEach(function(f){f.remove()});
+document.querySelectorAll('.carrusel').forEach(function(c){
+  var p=c.querySelector('.pista');
+  c.querySelectorAll('.flecha').forEach(function(b){
+    b.addEventListener('click',function(){
+      p.scrollBy({top:Number(b.dataset.d)*p.clientHeight,behavior:'smooth'});
+    });
+  });
+});
+</script>
+</body>
+</html>
